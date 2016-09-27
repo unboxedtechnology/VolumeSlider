@@ -18,12 +18,13 @@
 @synthesize webView;
 #endif
 
+/*
 -(CDVPlugin*) initWithWebView:(UIWebView*)theWebView
 {
-    self = (VolumeSlider*)[super initWithWebView:theWebView];
-    return self;
+	[self pluginInitialize];
+	return self;
 }
-
+*/
 
 #pragma mark -
 #pragma mark VolumeSlider
@@ -31,38 +32,38 @@
 - (void) createVolumeSlider:(CDVInvokedUrlCommand *)command
 {
 	NSArray* arguments = [command arguments];
-    
+
 	self.callbackId = command.callbackId;
 	NSUInteger argc = [arguments count];
-	
+
 	if (argc < 3) { // at a minimum we need x origin, y origin and width...
-		return;	
+		return;
 	}
-	
+
 	if (self.mpVolumeViewParentView != NULL) {
-        	return;//already created, don't need to create it again
+			return;//already created, don't need to create it again
 	}
-	
+
 	CGFloat originx,originy,width;
 	CGFloat height = 30;
-	
+
 	originx = [[arguments objectAtIndex:0] floatValue];
 	originy = [[arguments objectAtIndex:1] floatValue];
 	width = [[arguments objectAtIndex:2] floatValue];
 	if (argc > 3) {
 		height = [[arguments objectAtIndex:3] floatValue];
 	}
-	
+
 	CGRect viewRect = CGRectMake(
-								 originx, 
-								 originy, 
-								 width, 
+								 originx,
+								 originy,
+								 width,
 								 height
 								 );
-    self.mpVolumeViewParentView = [[UIView alloc] initWithFrame:viewRect];
+	self.mpVolumeViewParentView = [[UIView alloc] initWithFrame:viewRect];
 
 	[self.webView.superview addSubview:mpVolumeViewParentView];
-	
+
 	mpVolumeViewParentView.backgroundColor = [UIColor clearColor];
 	self.myVolumeView =
 	[[MPVolumeView alloc] initWithFrame: mpVolumeViewParentView.bounds];
