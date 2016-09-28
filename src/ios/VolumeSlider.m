@@ -65,10 +65,10 @@
 	[self.webView.superview addSubview:mpVolumeViewParentView];
 
 	mpVolumeViewParentView.backgroundColor = [UIColor clearColor];
-	self.myVolumeView =
-	[[MPVolumeView alloc] initWithFrame: mpVolumeViewParentView.bounds];
+	self.myVolumeView = [[MPVolumeView alloc] initWithFrame: mpVolumeViewParentView.bounds];
 	[mpVolumeViewParentView addSubview: myVolumeView];
 	self.myVolumeView.showsVolumeSlider = NO;
+	self.myVolumeView.showsRouteButton = NO;
 }
 
 - (void)showVolumeSlider:(CDVInvokedUrlCommand *)command
